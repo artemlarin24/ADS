@@ -178,10 +178,11 @@ std::istream& operator>>(std::istream& is, BitField& other) {
 
         if (c == '1') {
             tmp.set_bit(i);
-        }
-        else if (c != '0') {
-            is.setstate(std::ios::failbit);
-            return is;
+        } else {
+            if (c != '0') {
+                is.setstate(std::ios::failbit);
+                return is;
+            }
         }
     }
 

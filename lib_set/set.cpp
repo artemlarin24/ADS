@@ -165,8 +165,7 @@ std::istream& operator>>(std::istream& is, Set& other) {
 
     if (is.peek() == '}') {
         is.get();
-    }
-    else {
+    } else {
         while (true) {
             int64_t value;
 
