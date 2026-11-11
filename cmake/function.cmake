@@ -7,26 +7,32 @@
 # + https://neerc.ifmo.ru/wiki/index.php?title=CMake_Tutorial
 # + https://habr.com/ru/post/330902/
 
-# функция, создающая и подключающая библиотеку
+
+# Функция, создающая и подключающая библиотеку
 function(create_project_lib TARGET)
-    file(GLOB TARGET_SRC "*.c*")        # добавляем в переменную TARGET_SRC все файлы с расширением .c и .cpp
-    file(GLOB TARGET_HD "*.h*")         # добавляем в переменную TARGET_HD все файлы с расширением .h и .hpp
-    
-	# cоздаем СТАТИЧЕСКУЮ библиотеку с именем из переменной ${TARGET},
-    # в неё добавляются файлы из переменных ${TARGET_SRC} (исходный код) и ${TARGET_HD} (хедеры);
-	# если заменить «STATIC» на «SHARED», то получим библиотеку динамическую. 
-	add_library(${TARGET} STATIC ${TARGET_SRC} ${TARGET_HD})
-    
-	# ${CMAKE_CURRENT_SOURCE_DIR} - стандартная переменная с адресом рабочей директории
-	
-	# добавляем созданную библиотеку к списку имеющихся
-    get_property ( INCLUDE_DIRS GLOBAL PROPERTY INC_DIR)
-	get_property ( LIB_LIST GLOBAL PROPERTY LIBS_P)
-	list(APPEND LIB_LIST ${TARGET})
+    # Получаем исходные файлы и заголовки текущей папки
+    file(GLOB TARGET_SRC "*.c*")
+    file(GLOB TARGET_HD "*.h*")
+
+    # Создаём статическую библиотеку
+    add_library(${TARGET} STATIC ${TARGET_SRC} ${TARGET_HD})
+
+    # Добавляем корень проекта в пути поиска заголовочных файлов
+    target_include_directories(${TARGET} PUBLIC
+        ${CMAKE_SOURCE_DIR}
+    )
+
+    # Добавляем библиотеку в общий список
+    get_property(INCLUDE_DIRS GLOBAL PROPERTY INC_DIR)
+    get_property(LIB_LIST GLOBAL PROPERTY LIBS_P)
+
+    list(APPEND LIB_LIST ${TARGET})
     list(APPEND INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR})
-    set_property ( GLOBAL PROPERTY INC_DIR ${INCLUDE_DIRS})
-    set_property ( GLOBAL PROPERTY LIBS_P ${LIB_LIST}) 
+
+    set_property(GLOBAL PROPERTY INC_DIR "${INCLUDE_DIRS}")
+    set_property(GLOBAL PROPERTY LIBS_P "${LIB_LIST}")
 endfunction()
+
 
 # функция, создающая приложение (исполняемый проект)
 function(create_executable_project TARGET)
