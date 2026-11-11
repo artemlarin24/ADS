@@ -1,3 +1,4 @@
+// Copyright 2026 artemlarin24
 #pragma once
 
 #include <stdexcept>
@@ -8,7 +9,7 @@ class TStackOnMass {
     size_t _size;
     size_t _top;
 
-public:
+ public:
     explicit TStackOnMass(size_t size = 1);
     TStackOnMass(const TStackOnMass& other);
 

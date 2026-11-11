@@ -1,3 +1,4 @@
+// Copyright 2026 artemlarin24
 #pragma once
 
 #include <cstddef>
@@ -5,14 +6,14 @@
 
 template <typename T>
 class TQueueOnMass {
-private:
+ private:
     T* _data;
     size_t _size;
     size_t _count;
     size_t _front;
     size_t _back;
 
-public:
+ public:
     explicit TQueueOnMass(size_t size = 1);
     TQueueOnMass(const TQueueOnMass& other);
     ~TQueueOnMass();
