@@ -7,3 +7,9 @@
 
 #define BITFIELD_TESTS
 #define SET_TESTS
+
+#define VECTOR_TESTS
+#define TRIANGLE_MATRIX_TESTS
+#define MEM_DATA_TESTS
+#define MATRIX_TESTS
+#define MATH_VECTOR_TESTS
