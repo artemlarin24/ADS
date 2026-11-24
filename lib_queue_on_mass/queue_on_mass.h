@@ -14,7 +14,7 @@ class TQueueOnMass {
     size_t _back;
 
  public:
-    explicit TQueueOnMass(size_t size = 1);
+    explicit TQueueOnMass(size_t size = 100);
     TQueueOnMass(const TQueueOnMass& other);
     ~TQueueOnMass();
 

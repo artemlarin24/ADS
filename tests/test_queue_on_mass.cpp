@@ -10,7 +10,7 @@ TEST(ClassQueueOnMass, can_create_with_default_constructor) {
     TQueueOnMass<int> queue;
 
     EXPECT_THROW(queue.front(), std::logic_error);
-    EXPECT_EQ(queue.size(), 1);
+    EXPECT_EQ(queue.size(), 100);
     EXPECT_EQ(queue.is_empty(), true);
 }
 
