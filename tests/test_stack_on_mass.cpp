@@ -11,7 +11,7 @@ TEST(ClassStackOnMass, can_create_with_default_constructor) {
     TStackOnMass<int> stack;
 
     EXPECT_THROW(stack.top(), std::logic_error);
-    EXPECT_EQ(stack.size(), 1);
+    EXPECT_EQ(stack.size(), 100);
     EXPECT_EQ(stack.is_empty(), true);
 }
 

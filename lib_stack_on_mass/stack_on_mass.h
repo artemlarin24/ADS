@@ -10,7 +10,7 @@ class TStackOnMass {
     size_t _top;
 
  public:
-    explicit TStackOnMass(size_t size = 1);
+    explicit TStackOnMass(size_t size = 100);
     TStackOnMass(const TStackOnMass& other);
 
     ~TStackOnMass();
